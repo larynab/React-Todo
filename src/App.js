@@ -1,7 +1,9 @@
 import React from 'react';
 
-import Todo from './components/TodoComponents/Todo';
 import TodoForm from './components/TodoComponents/TodoForm';
+import TodoList from './components/TodoComponents/TodoList';
+
+import './components/TodoComponents/Todo.css';
 
 const tododata = [
   {
@@ -53,23 +55,46 @@ class App extends React.Component {
     });
   };
 
+  toggleTodo = todoId => {
+    this.setState({
+      tododata: this.state.tododata.map(todo => {
+        if (todoId === todo.id) {
+          return {
+            ...todo,
+            completed: !todo.completed
+          };
+        }
+        return todo;
+      })
+    });
+  };  
+
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <div>
-          {this.state.tododata.map((todos, index) => (
-            <Todo key={index} todo={todos} />
-          ))}
-        </div>
-        <TodoForm
-          addTodo={this.addTodo}
-          task={this.state.task}
-          handleChanges={this.handleChanges}
+        <TodoList
+          tododata={this.state.tododata}
+          toggleTodo={this.toggleTodo}
         />
+        <div>
+          <TodoForm
+            addTodo={this.addTodo}
+            task={this.state.task}
+            handleChanges={this.handleChanges}
+          />
+        </div>
       </div>
+
+//Old todo <div>
+//          {this.state.tododata.map((todos, index) => (
+//            <Todo key={index} todo={todos} toggleTodo={this.toggleTodo} tododata={this.state.tododata} />
+//          ))}
+//        </div>
     );
   }
 }
 
 export default App;
+
+
