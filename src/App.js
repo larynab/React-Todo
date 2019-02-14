@@ -67,23 +67,31 @@ class App extends React.Component {
         return todo;
       })
     });
+  };
+
+  clearCompleted = e => {
+    e.preventDefault();
+    this.setState({
+      tododata: this.state.tododata.filter(todo => !todo.completed)
+    });
   };  
 
   render() {
     return (
       <div>
-        <h2>Welcome to your Todo App!</h2>
-        <TodoList
-          tododata={this.state.tododata}
-          toggleTodo={this.toggleTodo}
-        />
         <div>
+          <h1>To Do List</h1>
           <TodoForm
             addTodo={this.addTodo}
             task={this.state.task}
             handleChanges={this.handleChanges}
           />
         </div>
+          <TodoList
+            tododata={this.state.tododata}
+            toggleTodo={this.toggleTodo}
+          />
+        <button onClick={this.clearCompleted}>Clear Completed</button>
       </div>
 
 //Old todo <div>
