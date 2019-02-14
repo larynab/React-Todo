@@ -11,6 +11,7 @@ const TodoForm = props => {
                 placeholder="task"
             />
             <button type="submit">Add Task</button>
+            <button type="submit">Clear Completed</button>
         </form>
     );
 };

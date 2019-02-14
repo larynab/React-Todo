@@ -22,8 +22,8 @@ class App extends React.Component {
     this.state = {
       tododata: tododata,
       task: '',
-      //id: '',
-      //completed: ''
+      id: '',
+      completed: ''
     };
   }
 
@@ -33,15 +33,15 @@ class App extends React.Component {
 
     const newTodo = {
       task: this.state.task,
-      //id: this.state.id,
-      //completed: this.state.completed
+      id: this.state.id,
+      completed: this.state.completed
     };
 
     this.setState({
       tododata: [...this.state.tododata, newTodo],
       task: '',
-      //id: '',
-      //completed: ''
+      id: '',
+      completed: ''
     });
   };
 
